@@ -1,0 +1,12 @@
+version: "3"
+services:
+  web:
+    image: con11235/assignment1
+    ports:
+      - 4000:80
+
+  openweb:
+    image: con11235/openweb
+    depends_on:
+      - web
+    command: curl -L http://com_web_web_1:80
