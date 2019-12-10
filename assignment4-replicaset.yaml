@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: web
+  labels:
+    apps: web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: web
+        image: con11235/assignment1
+        ports:
+        - containerPort: 80
+      - name: openweb
+        image: con11235/openweb
+        command: ["/bin/sh", "-c", "while : ;do curl http://localhost:80/; sleep 3; done"]
